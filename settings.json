@@ -1,0 +1,38 @@
+{
+  "server": {
+    "url": "localhost:3000",
+    "user":       {
+      "name": "cj",
+      "pass": "pass"
+    }
+  },
+  "nodes": {
+    "node": {
+      "name": "resource",
+      "properties": {
+        "nid": {
+          "name": "id"
+        },
+        "title": {
+          "name": "name"
+        }
+      }
+    },
+    "character": {
+      "parent":"node"
+    }
+  },
+  "trellises": {
+    "resource": {
+      "identities": [ "id" ],
+      "properties": {
+        "id": {
+          "type": "int"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

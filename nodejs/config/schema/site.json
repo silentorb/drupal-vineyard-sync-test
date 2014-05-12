@@ -1,0 +1,161 @@
+{
+  "tables": {
+    "objects_tags": {
+      "primary_keys": [ "object", "tag" ],
+      "properties": {
+        "object": {
+          "type": "int"
+        },
+        "tag": {
+          "type": "int"
+        }
+      }
+    },
+    "additional_tags": {
+      "primary_keys": [ "character", "tag" ],
+      "properties": {
+        "character": {
+          "type": "int"
+        },
+        "tag": {
+          "type": "int"
+        }
+      }
+    },
+    "character": {
+      "properties": {
+        "additional_tags": {
+          "other_table": "additional_tags",
+          "relationship": "many_to_many"
+        }
+      }
+    },
+    "user_follows": {
+      "primary_keys": [ "follower", "followee" ],
+      "properties": {
+        "follower": {
+          "type": "int"
+        },
+        "followee": {
+          "type": "int"
+        }
+      }
+    },
+    "user": {
+      "properties": {
+        "followers": {
+          "other_table": "user_follows",
+          "other_field": "followee"
+        },
+        "followees": {
+          "other_table": "user_follows",
+          "other_field": "follower"
+        }
+      }
+    }
+  },
+  "trellises": {
+    "object": {
+      "properties": {
+        "tags": {
+          "type": "list",
+          "trellis": "tag"
+        }
+      }
+    },
+    "user": {
+      "properties": {
+        "followers": {
+          "type": "list",
+          "trellis": "user",
+          "other_property": "followees"
+        },
+        "followees": {
+          "type": "list",
+          "trellis": "user",
+          "other_property": "followers"
+        }
+      }
+    },
+    "character": {
+      "parent": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "is_alive": {
+          "type": "bool",
+          "default": true
+        },
+        "all": {
+          "type": "string",
+          "is_virtual": true
+        },
+        "items": {
+          "type": "list",
+          "trellis": "item"
+        },
+        "additional_tags": {
+          "type": "list",
+          "trellis": "tag"
+        },
+        "author": {
+          "type": "reference",
+          "trellis": "user"
+        }
+      }
+    },
+    "item": {
+      "parent": "object",
+      "properties": {
+        "owner": {
+          "type": "reference",
+          "trellis": "character"
+        }
+      }
+    },
+    "tag": {
+      "properties": {
+        "id": {
+          "type": "int"
+        },
+        "name": {
+          "type": "string"
+        },
+        "objects": {
+          "type": "list",
+          "trellis": "object"
+        }
+      }
+    },
+    "message": {
+      "primary_key": "guid",
+      "properties": {
+        "guid": {
+          "type": "guid"
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "union_test": {
+      "primary_key": "id",
+      "is_virtual": true,
+      "properties": {
+        "id": {
+          "type": "int"
+        },
+        "username": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "is_alive": {
+          "type": "bool"
+        }
+      }
+    }
+  }
+}

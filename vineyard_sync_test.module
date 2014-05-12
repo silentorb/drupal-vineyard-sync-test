@@ -1,0 +1,7 @@
+<?php
+
+function vineyard_sync_test_init() {
+  $path = str_replace("\\", '/', drupal_get_path('module', 'vineyard_sync_test'));
+  $sync = Vineyard_Sync::get_instance();
+  $sync->add_settings_file($path . '/settings.json');
+}

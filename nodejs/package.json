@@ -1,0 +1,21 @@
+{
+  "name": "vineyard-sync-test-suite",
+  "version": "0.1.0",
+  "description": "Test suite for Vineyard Sync",
+  "main": "run.js",
+  "author": "Christopher W. Johnson",
+  "license": "MIT",
+  "dependencies": {
+    "when": "~3.1.0",
+    "source-map-support": "~0.2.5",
+    "vineyard": "0.x.x",
+    "vineyard-ground": "0.x.x",
+    "vineyard-metahub": "0.x.x",
+    "vineyard-lawn": "0.x.x",
+    "vineyard-fortress": "^0.1.3"
+  },
+  "devDependencies": {
+    "buster": "~0.7.11",
+    "vineyard-plantlab": "^0.1.1"
+  }
+}
